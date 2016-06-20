@@ -2,7 +2,7 @@
 
 ```
 MetaBookInfo: <- S
-    <!-- standard book information -->
+    <!-- 标准书籍的数据结构，用于存放服务器已知书籍信息 -->
     id
     name
     images
@@ -12,6 +12,7 @@ MetaBookInfo: <- S
 
 ```
 Book: <- C
+    <!-- 客户端书籍的数据结构 -->
     id
     name
     image
@@ -23,13 +24,20 @@ Book: <- C
 ```
 
 ```
-Remind: <- C <!-- 读书开始提醒 -->
+Remind: <- C
+    <!-- 读书开始提醒 -->
     book_id => Book
     remind_time
+```
 
-Timer: <- C <!-- 延时 -->
+```
+Timer: <- C
+    <!-- 延时 -->
+```
 
-FinishTimer: <- C <!-- 读书结束提醒 -->
+```
+FinishTimer: <- C
+    <!-- 读书结束提醒 -->
 ```
 
 ```
@@ -40,13 +48,17 @@ User: <- S
     salt
     avatar
     cookie
+```
 
+```
 User: <- C
     name
     avatar
     cookie
+```
 
-BookComment:
+```
+BookComment: <- C
     id
     book_id => Book
     content
