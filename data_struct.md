@@ -19,8 +19,8 @@ Book: # 客户端书籍的数据结构 !! 同步项
     current_page
     finish_time
     total_reading_time
-    modified_time
-    created_time
+    updated_at
+    created_at
 ```
 
 ```
@@ -28,8 +28,8 @@ BookComment: # 书评 !! 同步项
     id
     book_id => Book
     content
-    modified_time
-    created_time
+    updated_at
+    created_at
 ```
 
 ```
@@ -82,4 +82,3 @@ Data: # 数据同步表
 服务端配置:
     token_life_time
 ```
-
