@@ -155,8 +155,14 @@ method: POST
 parameters:
     name
     token
-    ...
+    check_list
+        [{created_at, updated_at}, {created_at, updated_at}, ...]   # 创建时间与修改时间的列表
 return:
+    pull_list       # 客户端落后于服务端的部分
+        [created_at, created_at, ...]
+    push_list       # 服务端落后于客户端的部分
+        [created_at, created_at, ...]
+remark: 当返回的两个列表都为空时，表明已经同步
 ```
 
 ### 数据上传
@@ -166,8 +172,11 @@ method: POST
 parameters:
     name
     token
-    ...
+    list        # 上传数据列表
+        [{created_at, updated_at, content}, {...}, ...]
 return:
+    count
+        3 # 成功上传3条数据
 ```
 
 ### 数据下载
@@ -177,6 +186,26 @@ method: GET
 parameters:
     name
     token
-    ...
+    list        # 下载数据参数
+        [created_at, created_at, ...]
 return:
+    list        # 下载数据
+        [{created_at, updated_at, content}, {...}, ...]
+```
+
+### 数据同步
+```
+path: /data/sync
+method: POST
+parameters:
+    name
+    token
+    check_list
+        [{created_at, updated_at}, {created_at, updated_at}, ...]   # 创建时间与修改时间的列表
+return:
+    pull_list       # 客户端落后于服务端的部分
+        [{created_at, updated_at, content}, {...}, ...]
+    push_list       # 服务端落后于客户端的部分
+        [created_at, created_at, ...]
+remark: 与数据同步检查接口基本相同，但直接返回需要下载的部分，此步骤做完后需做一次数据上传操作
 ```
