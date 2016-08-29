@@ -29,6 +29,10 @@
 >         token: "token_for_example"
 >     }
 > }
+> 
+> 注意：
+>      客户端发送的参数错误时，返回为：{ code: 1, return: {} }
+>      客户端token验证错误时，返回为：{ code: 2, return: {} }
 > ```
 
 ### 接口范例
